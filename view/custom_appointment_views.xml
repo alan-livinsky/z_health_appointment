@@ -9,9 +9,10 @@ SPDX-License-Identifier: GPL-3.0-or-later
 <tryton>
     <data>
         <!--
-            Inherit from same base as health_appointment_fiuner.
-            Xpaths apply after fiuner's (module dependency order).
-            Goal: healthprof | date | time | patient | rest...
+            Inherit from base health appointment tree.
+            Remove healthprof, date, time from their positions,
+            then reinsert them in correct order before the first element.
+            Result: healthprof | date | time | [checked_in btn] | patient | rest
         -->
         <record model="ir.ui.view" id="view_gnuhealth_appointment_tree_custom">
             <field name="model">gnuhealth.appointment</field>
@@ -19,11 +20,15 @@ SPDX-License-Identifier: GPL-3.0-or-later
             <field name="name">gnuhealth_appointment_tree_custom</field>
             <field name="arch" type="xml"><![CDATA[
                 <data>
-                    <!-- Remove healthprof from its current position (near end) -->
+                    <!-- Step 1: remove all three fields from their current positions -->
                     <xpath expr="/tree/field[@name='healthprof']" position="replace"/>
-                    <!-- Insert healthprof before the date column (first appointment_date) -->
-                    <xpath expr="/tree/field[@name='appointment_date'][@widget='date']" position="before">
+                    <xpath expr="/tree/field[@name='appointment_date'][@widget='time']" position="replace"/>
+                    <xpath expr="/tree/field[@name='appointment_date'][@widget='date']" position="replace"/>
+                    <!-- Step 2: reinsert in desired order before the very first element -->
+                    <xpath expr="/tree/button[@name='checked_in']" position="before">
                         <field name="healthprof" expand="1" width="300"/>
+                        <field name="appointment_date" string="Date" widget="date"/>
+                        <field name="appointment_date" string="Time" widget="time"/>
                     </xpath>
                 </data>
             ]]></field>
