@@ -14,15 +14,23 @@ SPDX-License-Identifier: GPL-3.0-or-later
             <field name="name">gnuhealth_appointment_tree_custom</field>
             <field name="arch" type="xml"><![CDATA[
                 <data>
-                    <!-- Remove healthprof, time, and date from current positions -->
-                    <xpath expr="/tree/field[@name='healthprof']" position="replace"/>
+                    <!-- Step 1: remove time — now only ONE appointment_date remains (the date field) -->
                     <xpath expr="/tree/field[@name='appointment_date'][@widget='time']" position="replace"/>
-                    <xpath expr="/tree/field[@name='appointment_date'][@string='Date']" position="replace"/>
-                    <!-- Reinsert in correct order before very first element -->
-                    <xpath expr="/tree/button[@name='checked_in']" position="before">
+                    <!-- Step 2: remove healthprof -->
+                    <xpath expr="/tree/field[@name='healthprof']" position="replace"/>
+                    <!-- Step 3: remove checked_in button (was at position 1, blocking healthprof from being first) -->
+                    <xpath expr="/tree/button[@name='checked_in']" position="replace"/>
+                    <!-- Step 4: insert healthprof before the now-unique appointment_date (=date field) -->
+                    <xpath expr="/tree/field[@name='appointment_date']" position="before">
                         <field name="healthprof" expand="1" width="300"/>
-                        <field name="appointment_date" string="Date" widget="date"/>
+                    </xpath>
+                    <!-- Step 5: insert time right after appointment_date (=date) — still unique at this point -->
+                    <xpath expr="/tree/field[@name='appointment_date']" position="after">
                         <field name="appointment_date" string="Time" widget="time"/>
+                    </xpath>
+                    <!-- Step 6: put checked_in button back before patient -->
+                    <xpath expr="/tree/field[@name='patient']" position="before">
+                        <button name="checked_in" help="The patient has arrived and is waiting" string="Checked in"/>
                     </xpath>
                 </data>
             ]]></field>
