@@ -20,11 +20,20 @@ SPDX-License-Identifier: GPL-3.0-or-later
             <field name="name">gnuhealth_appointment_tree_custom</field>
             <field name="arch" type="xml"><![CDATA[
                 <data>
+                    <!-- Remove appointment_date (date widget) from its current position -->
+                    <xpath expr="/tree/field[@name='appointment_date'][@widget='date']" position="replace"/>
+                    
+                    <!-- Remove appointment_date (time widget) from its current position -->
+                    <xpath expr="/tree/field[@name='appointment_date'][@widget='time']" position="replace"/>
+                    
                     <!-- Remove healthprof from its current position (near end of tree) -->
                     <xpath expr="/tree/field[@name='healthprof']" position="replace"/>
-                    <!-- Re-insert healthprof before patient, with same attrs fiuner sets -->
-                    <xpath expr="/tree/field[@name='appointment_date']" position="before">
+                    
+                    <!-- Re-insert healthprof and date/time fields after patient -->
+                    <xpath expr="/tree/field[@name='patient']" position="after">
                         <field name="healthprof" expand="1" width="300"/>
+                        <field name="appointment_date" string="Date" widget="date"/>
+                        <field name="appointment_date" string="Time" widget="time"/>
                     </xpath>
                 </data>
             ]]></field>
