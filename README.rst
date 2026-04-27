@@ -1,4 +1,4 @@
-# z_health_appointment_custom Module
+# z_health_appointment Module
 
 ## Overview
 This module extends the GNU Health Calendar module with custom modifications to the appointment view. It allows for customization of the appointment display without modifying the original health_calendar module.
@@ -17,7 +17,7 @@ The custom tree view displays appointment columns in the following order:
 
 ## Module Structure
 ```
-z_health_appointment_custom/
+z_health_appointment/
 ├── __init__.py                   # Module initializer
 ├── tryton.cfg                    # Module configuration
 ├── README.rst                    # This file
@@ -32,7 +32,7 @@ z_health_appointment_custom/
 
 ## Installation
 1. Place this module in your Tryton modules directory
-2. Add `z_health_appointment_custom` to your Tryton configuration
+2. Add `z_health_appointment` to your Tryton configuration
 3. Update modules in Tryton admin interface
 
 ## Usage

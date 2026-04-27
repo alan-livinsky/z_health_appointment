@@ -48,7 +48,7 @@ requires.append(
 )
 
 setup(
-    name='z_health_appointment_custom',
+    name='z_health_appointment',
     version=info.get('version', '0.0.1'),
     description='Custom GNU Health appointment view overrides',
     long_description=read('README.rst'),
@@ -56,12 +56,12 @@ setup(
     author_email='',
     url='',
     download_url='',
-    package_dir={'trytond.modules.z_health_appointment_custom': '.'},
+    package_dir={'trytond.modules.z_health_appointment': '.'},
     packages=[
-        'trytond.modules.z_health_appointment_custom',
+        'trytond.modules.z_health_appointment',
     ],
     package_data={
-        'trytond.modules.z_health_appointment_custom': info.get('xml', [])
+        'trytond.modules.z_health_appointment': info.get('xml', [])
         + info.get('translation', [])
         + ['tryton.cfg', 'view/*.xml', 'doc/*.rst', 'locale/*.po', 'icons/*.svg'],
     },
@@ -85,7 +85,7 @@ setup(
     zip_safe=False,
     entry_points="""
     [trytond.modules]
-    z_health_appointment_custom = trytond.modules.z_health_appointment_custom
+    z_health_appointment = trytond.modules.z_health_appointment
     """,
     test_suite='tests',
     test_loader='trytond.test_loader:Loader',
