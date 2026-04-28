@@ -1,45 +1,48 @@
-# z_health_appointment Module
+z_health_appointment
+====================
 
-## Overview
-This module extends the GNU Health Calendar module with custom modifications to the appointment view. It allows for customization of the appointment display without modifying the original health_calendar module.
+Overview
+--------
 
-## Features
+This module extends GNU Health appointment views with local customizations
+without modifying the upstream ``health_calendar`` module.
 
-### Reordered Columns in Appointment Tree View
-The custom tree view displays appointment columns in the following order:
-1. **Health Professional (Medic)** - shown first for easy identification
+Features
+--------
+
+The custom appointment tree view shows the main columns in this order:
+
+1. Health Professional
 2. Patient
-3. Appointment Date
-4. Appointment Date End
+3. Date
+4. Time
 5. Specialty
 6. Institution
 7. State
 
-## Module Structure
-```
-z_health_appointment/
-├── __init__.py                   # Module initializer
-├── tryton.cfg                    # Module configuration
-├── README.rst                    # This file
-└── view/
-    ├── custom_appointment_views.xml    # View definitions and action overrides
-    └── appointment_tree.xml            # Tree view template (reference)
-```
+Installation
+------------
 
-## Dependencies
-- `health_calendar` - The base health calendar module
-- `ir` - Tryton internal modules
+For GNU Health 4.2.0 on Tryton 6.0 with Python 3.10, install the module from
+this directory:
 
-## Installation
-1. Place this module in your Tryton modules directory
-2. Add `z_health_appointment` to your Tryton configuration
-3. Update modules in Tryton admin interface
+.. code-block:: console
 
-## Usage
-The custom column order will be automatically applied to appointments viewed through the Appointments Calendar action.
+   pip install .
 
-## Customization
-To further customize the columns, edit `view/custom_appointment_views.xml` and modify the fields in the tree view definition within the `<tree>` element.
+Or in editable mode during development:
 
-## License
+.. code-block:: console
+
+   pip install -e .
+
+Usage
+-----
+
+Once installed, activate ``z_health_appointment`` in Tryton as a normal module
+update. The custom column order is then applied to the appointment tree view.
+
+License
+-------
+
 SPDX-License-Identifier: GPL-3.0-or-later

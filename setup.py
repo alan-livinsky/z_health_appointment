@@ -20,7 +20,7 @@ for key in ('depends', 'extras_depend', 'xml'):
     if key in info:
         info[key] = info[key].strip().splitlines()
 
-major_version, minor_version = 4, 2
+major_version, minor_version = 6, 0
 
 requires = []
 fiuner_modules = [
@@ -82,6 +82,7 @@ setup(
     license='GPL-3',
     install_requires=requires,
     extras_require={},
+    python_requires='>=3.10, <3.11',
     zip_safe=False,
     entry_points="""
     [trytond.modules]
