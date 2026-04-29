@@ -1,4 +1,5 @@
 include COPYING
 include README.rst
+include README.md
 include tryton.cfg
 recursive-include view *.xml

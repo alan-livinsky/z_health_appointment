@@ -6,9 +6,16 @@ import re
 import configparser
 
 
-def read(fname):
-    with open(os.path.join(os.path.dirname(__file__), fname), encoding="utf-8") as f:
-        return f.read()
+def read(*names):
+    base_dir = os.path.dirname(__file__)
+    for fname in names:
+        path = os.path.join(base_dir, fname)
+        if os.path.exists(path):
+            with open(path, encoding="utf-8") as f:
+                return f.read(), fname
+    raise FileNotFoundError(
+        "None of the requested files exist: %s" % ", ".join(names)
+    )
 
 
 config = configparser.ConfigParser()
@@ -47,11 +54,16 @@ requires.append(
     % (major_version, minor_version, major_version, minor_version + 1)
 )
 
+long_description, long_description_file = read('README.rst', 'README.md')
+
 setup(
     name='z_health_appointment',
     version=info.get('version', '0.0.1'),
     description='Custom GNU Health appointment view overrides',
-    long_description=read('README.rst'),
+    long_description=long_description,
+    long_description_content_type=(
+        'text/markdown' if long_description_file.endswith('.md') else 'text/x-rst'
+    ),
     author='',
     author_email='',
     url='',

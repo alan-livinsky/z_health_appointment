@@ -34,10 +34,13 @@ SPDX-License-Identifier: GPL-3.0-or-later
                     <!-- Remove healthprof from its current position -->
                     <xpath expr="/tree/field[@name='healthprof']" position="replace"/>
 
+                    <!-- Remove speciality from its current position -->
+                    <xpath expr="/tree/field[@name='speciality']" position="replace"/>
+
                     <!-- Remove the original no_show button so we can place it after En atención -->
                     <xpath expr="/tree/button[@name='no_show']" position="replace"/>
 
-                    <!-- Keep patient immediately after healthprof -->
+                    <!-- Keep speciality and patient immediately after healthprof -->
                     <xpath expr="/tree/field[@name='patient']" position="replace"/>
                     <xpath expr="/tree/field[@name='phone']" position="replace"/>
                     <xpath expr="/tree/field[@name='dni']" position="replace"/>
@@ -47,8 +50,9 @@ SPDX-License-Identifier: GPL-3.0-or-later
                     <xpath expr="/tree/field[@name='chronic']" position="replace"/>
                     <xpath expr="/tree/field[@name='current_insurance']" position="replace"/>
                     <xpath expr="/tree/field[@name='state']" position="before">
-                        <field name="healthprof" expand="1" width="300"/>
-                        <field name="patient" expand="1" width="300"/>
+                        <field name="healthprof" expand="1" width="220"/>
+                        <field name="speciality"/>
+                        <field name="patient" expand="1" width="220"/>
                         <field name="appointment_date" string="Date" widget="date"/>
                         <field name="appointment_date" string="Time" widget="time"/>
                         <button name="checked_in" help="The patient has arrived and is waiting" string="Checked in"/>
