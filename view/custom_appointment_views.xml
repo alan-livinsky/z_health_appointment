@@ -50,7 +50,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
                     <xpath expr="/tree/field[@name='chronic']" position="replace"/>
                     <xpath expr="/tree/field[@name='current_insurance']" position="replace"/>
                     <xpath expr="/tree/field[@name='state']" position="before">
-                        <field name="healthprof" expand="1" width="220"/>
+                        <field name="healthprof" width="180"/>
                         <field name="speciality"/>
                         <field name="patient" expand="1" width="220"/>
                         <field name="appointment_date" string="Date" widget="date"/>
